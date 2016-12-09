@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="524.0001220703125" prefWidth="524.9998779296875" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+    <children>
+        <AnchorPane fx:id="waterDiffusion" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <children>
+                <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="290.0" layoutY="202.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
+                <Label alignment="CENTER" layoutX="73.0" layoutY="14.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про первую частицу" wrapText="false">
+                    <font>
+                        <Font name="Algerian" size="18.0" fx:id="x2" />
+                    </font>
+                </Label>
+                <ColorPicker fx:id="colorOfFirst" layoutX="391.0" layoutY="75.0" prefWidth="102.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="75.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false">
+                    <font>
+                        <Font name="Algerian" size="12.0" fx:id="x1" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="135.0" prefHeight="25.0" prefWidth="248.49993896484375" text="Какую часть сосуда занимает (в процентах)" textFill="BLACK" />
+                <TextField id="First" fx:id="firstSubstance" alignment="CENTER" layoutX="391.0" layoutY="135.0" prefHeight="25.0" prefWidth="83.0" text="" />
+                <Label alignment="CENTER" font="$x2" layoutX="73.0" layoutY="234.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про вторую частицу" wrapText="false" />
+                <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="88.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false" />
+                <ColorPicker id="colorOfFirst" fx:id="colorOfSecond" layoutX="391.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" />
+                <Button fx:id="showWaterDiffusion" font="$x1" layoutX="314.0" layoutY="480.0" mnemonicParsing="false" onAction="#setShowWaterDiffusion" prefWidth="179.0" text="Показать процесс" textFill="BLACK" wrapText="false">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant>
+                                    <color>
+                                        <Color blue="0.639" green="1.000" red="0.000" fx:id="x3" />
+                                    </color>
+                                </javafx.scene.effect.Light.Distant>
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+                <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="291.0" layoutY="362.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
+                <Label fx:id="warning" alignment="TOP_CENTER" layoutX="59.0" layoutY="435.0" prefWidth="393.0" text="" />
+                <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="28.0" layoutY="400.0" prefHeight="25.0" prefWidth="234.49993896484375" text="Введите коэффициент диффузии" textFill="BLACK" wrapText="false" />
+                <TextField id="First" fx:id="dDiffusion" alignment="CENTER" layoutX="391.0" layoutY="400.0" prefHeight="25.0" prefWidth="83.0" text="" />
+                <Button fx:id="backToMainWindow1" layoutX="64.0" layoutY="481.0" mnemonicParsing="false" onAction="#setBackToMainWindow" prefWidth="152.0" text="Вернуться в главное окно" textOverrun="CLIP">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant color="$x3" />
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane id="ChoosenWindow" fx:id="choosenWindow" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <children>
+                <Label alignment="CENTER" disable="false" graphicTextGap="4.0" layoutX="166.0" layoutY="116.0" prefHeight="46.0" prefWidth="193.0" text="Выберите модель" textAlignment="LEFT" textFill="#333100" textOverrun="CENTER_WORD_ELLIPSIS" underline="false">
+                    <font>
+                        <Font name="Algerian" size="22.0" />
+                    </font>
+                </Label>
+                <Button fx:id="openWaterDiffusion" layoutX="180.0" layoutY="234.0" mnemonicParsing="false" onAction="#setOpenWaterDiffusion" prefWidth="165.0" text="Диффузия в жидкостях" textFill="BLACK">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant color="#00ffe0" />
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+                <Button fx:id="openGasDiffusion" layoutX="180.0" layoutY="332.0" mnemonicParsing="false" onAction="#setOpenGasDiffusion" prefWidth="165.0" text="Диффузия в газах" textFill="BLACK">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant color="#bfbfbf" />
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="gasDiffusion" prefHeight="200.0" prefWidth="200.0" visible="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <children>
+                <Button fx:id="backToMainWindow2" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#setBackToMainWindow2" prefWidth="168.0" text="Вернуться в главное окно">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant>
+                                    <color>
+                                        <Color blue="0.714" green="1.000" red="0.200" fx:id="x4" />
+                                    </color>
+                                </javafx.scene.effect.Light.Distant>
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+                <Button layoutX="343.0" layoutY="489.0" mnemonicParsing="false" prefWidth="168.0" text="Показать процесс">
+                    <effect>
+                        <Lighting>
+                            <bumpInput>
+                                <Shadow />
+                            </bumpInput>
+                            <light>
+                                <javafx.scene.effect.Light.Distant color="$x4" />
+                            </light>
+                        </Lighting>
+                    </effect>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+</GridPane>
