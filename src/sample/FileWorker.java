@@ -38,7 +38,6 @@ public class FileWorker {
         int kol = 0;
         String name = "", mass = "", radius = "";
         for(String line: lines){
-            System.out.println(line);
             if (kol == 0){
                 name = line;
             } else if (kol == 1){
@@ -47,6 +46,7 @@ public class FileWorker {
                 radius = line;
                 Substance substance = new Substance(name, mass, radius);
                 InformationAboutSubstance.addNew(substance);
+                kol = -1;
             }
             kol++;
         }

@@ -123,7 +123,6 @@ public class Controller {
             return false;
         }
         if (InformationAboutSubstance.isInSet(s1) == false || InformationAboutSubstance.isInSet(s2) == false){
-            System.out.println("areq");
             warningGas.setText("Данных веществ нет в нашей базе, вы можете добавить их");
             return false;
         }
@@ -150,8 +149,6 @@ public class Controller {
             double k = Double.parseDouble(s) / 100.;
             double koef = Double.parseDouble(dDiffusion.getText());
             WindowWithDiffusions window = new WindowWithDiffusions(koef, k);
-            System.out.println(r1);
-            System.out.println(r2);
             window.setColorFirstByRGB((int)(r1 * 255), (int)(g1 * 255), (int)(b1 * 255));
             window.setColorSecondByRGB((int)(r2 * 255), (int)(g2 * 255), (int)(b2 * 255));
             window.start();
