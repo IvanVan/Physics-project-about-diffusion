@@ -47,7 +47,9 @@ public class MyJFrame extends JFrame {
         HeightGraph[i] = sizey;
     }
 
+    @Override
     public void paint(Graphics g) {
+        super.paint(g);
     }
 
     void drawLine(int i, int x, Color color) {
@@ -165,4 +167,6 @@ public class MyJFrame extends JFrame {
     public void wannaPaused() {
         paused = true;
     }
+
+    public void wannaOneMore() {oneMore = true;}
 }

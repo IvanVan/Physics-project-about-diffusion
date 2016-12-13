@@ -1,5 +1,4 @@
 package sample;
-
 import java.awt.*;
 
 /**
@@ -7,8 +6,8 @@ import java.awt.*;
  */
 public class DiffusionStupid extends Diffusion {
     private MathStatistics statistics = new MathStatistics();
-    private double XRed = super.X0;
-    private double XBlue = super.X0;
+    private double XFirst = super.X0;
+    private double XSecond = super.X0;
     private double startTime = 0.0, lastTime = 0.0;
 
     public DiffusionStupid() throws InterruptedException {
@@ -21,8 +20,8 @@ public class DiffusionStupid extends Diffusion {
         super.start();
         startTime = System.currentTimeMillis();
         lastTime = startTime;
-        XRed = super.X0;
-        XBlue = super.X0;
+        XFirst = super.X0;
+        XSecond = super.X0;
     }
 
     @Override
@@ -30,32 +29,34 @@ public class DiffusionStupid extends Diffusion {
         super.update();
         double t = 0.001 * (System.currentTimeMillis() - lastTime);
         double deltaX = statistics.getXBySqrX(2.0 * super.D * t);
-        XRed += deltaX;
-        XRed = Math.min(XRed, (double)super.Width);
-        XBlue -= deltaX;
-        XBlue = Math.max(0.0, XBlue);
+        XFirst += deltaX;
+        XFirst = Math.min(XFirst, (double)super.Width);
+        XSecond -= deltaX;
+        XSecond = Math.max(0.0, XSecond);
         lastTime = System.currentTimeMillis();
     }
 
-    public double getExpansionexpansionRed() {
-        return XRed / super.X0;
+    public double getExpansionexpansionFirst() {
+        return XFirst / super.X0;
     }
 
-    public double getExpansionexpansionBlue() {return (super.Width - XBlue) / (super.Width - super.X0);}
+    public double getExpansionexpansionSecond() {return (super.Width - XSecond) / (super.Width - super.X0);}
 
     @Override
     public Color getColor(int x) {
-        return new Color((x > XRed ? 0 : (int)(255.0 / getExpansionexpansionRed())), 0, (x < XBlue ? 0 : (int)(255.0 / getExpansionexpansionBlue())));
+        double nFirst = (x > XFirst ? 0.0 : 1.0 / getExpansionexpansionFirst());
+        double nSecond = (x < XSecond ? 0.0 : 1.0 / getExpansionexpansionSecond());
+        return getColorSuperposition(nFirst, nSecond);
     }
 
     @Override
-    public double getNRed(int x) {
-        return (x > XRed ? 0.0 : 1.0 / getExpansionexpansionRed());
+    public double getNFirst(int x) {
+        return (x > XFirst ? 0.0 : 1.0 / getExpansionexpansionFirst());
     }
 
     @Override
-    public double getNBlue(int x) {
-        return (x < XBlue ? 0.0 : 1.0 / getExpansionexpansionBlue());
+    public double getNSecond(int x) {
+        return (x < XSecond ? 0.0 : 1.0 / getExpansionexpansionSecond());
     }
 
     public double getTimeSeconds() {

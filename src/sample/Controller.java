@@ -140,10 +140,20 @@ public class Controller {
         if (check()){
             Color first = colorOfFirst.getValue();
             Color second = colorOfSecond.getValue();
+            double r1 = first.getRed();
+            double r2 = second.getRed();
+            double b1 = first.getBlue();
+            double b2 = second.getBlue();
+            double g1 = first.getGreen();
+            double g2 = second.getGreen();
             String s = firstSubstance.getText();
             double k = Double.parseDouble(s) / 100.;
             double koef = Double.parseDouble(dDiffusion.getText());
             WindowWithDiffusions window = new WindowWithDiffusions(koef, k);
+            System.out.println(r1);
+            System.out.println(r2);
+            window.setColorFirstByRGB((int)(r1 * 255), (int)(g1 * 255), (int)(b1 * 255));
+            window.setColorSecondByRGB((int)(r2 * 255), (int)(g2 * 255), (int)(b2 * 255));
             window.start();
         }
     }
