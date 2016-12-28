@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
  * Created by Vadim on 04.12.16.
  */
 public class DiffusionDifferencial extends Diffusion {
-    private double dt = 0.000001;
-    private double dx = 0.011;
+    private static double dt = 0.00000001;
+    private static double dx = 0.0011;
     private double nFirst[];
     private double n2First[];
     private double nSecond[];
@@ -26,10 +26,15 @@ public class DiffusionDifferencial extends Diffusion {
         nSecond = new double[super.Width];
         n2Second = new double[super.Width];
         alpha = -super.D * dt / (dx * dx);
+        System.out.println(alpha);
         for (int x = 0; x < super.Width; ++x) {
             nFirst[x] = (x < super.getX0() ? 1.0 : 0.0);
             nSecond[x] = 1.0 - nFirst[x];
         }
+    }
+
+    public static double getAlphaBy(double d) {
+        return d * dt / (dx * dx);
     }
 
     @Override
@@ -53,10 +58,16 @@ public class DiffusionDifferencial extends Diffusion {
         for (int x = 0; x < super.Width; ++x) {
             nFirst[x] = n2First[x];
             nSecond[x] = n2Second[x];
-            //nFirst[x] = Math.max(0.0, Math.min(1.0, nFirst[x]));
-            //nSecond[x] = Math.max(0.0, Math.min(1.0, nSecond[x]));
+            nFirst[x] = Math.max(0.0, Math.min(1.0, nFirst[x]));
+            nSecond[x] = Math.max(0.0, Math.min(1.0, nSecond[x]));
             n2First[x] = n2Second[x] = 0;
         }
+    }
+
+    @Override
+    public void multipleUpdate(int iterations, double speedConstant) {
+        super.multipleUpdate(iterations, speedConstant);
+        for (int i = 0; i < (int) (speedConstant * iterations); ++i) update();
     }
 
     @Override

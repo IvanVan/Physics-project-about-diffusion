@@ -20,13 +20,21 @@ public class WindowWithDiffusions extends Thread {
     private Diffusion[] diffusionModels = new Diffusion[2];
     private MyJFrame window;
     private int Width, Height;
-    private KeyListener keyListener;
     private Color colorLeft = Color.RED, colorRight = Color.BLUE;
+    private double correctionSpeed = 1.0;
+    //private SpeedJFrame speedWindow;
 
     WindowWithDiffusions(double d, double borderalpha) throws InterruptedException {
         D = d;
+        if (Math.abs(DiffusionDifferencial.getAlphaBy(D)) > 0.5) {
+            //x(t) = sqrt(2Dt)
+            // D' -> D / a => x'(t) -> x(t) / sqrt(a)
+            // cD' = 0.5 => D' = 0.5 / c
+            // correctionSpeed = 1/sqrt(0.5 / c   /    last / c) = sqrt(last / 0.5)
+            correctionSpeed = Math.sqrt(Math.abs(DiffusionDifferencial.getAlphaBy(D)) / 0.5);
+            D /= correctionSpeed * correctionSpeed;
+        }
         borderAlpha = borderalpha;
-
         Dimension screenSize =  Toolkit.getDefaultToolkit().getScreenSize();
         window = new MyJFrame(screenSize.width, screenSize.height);
         Width = (screenSize.width - 250) / 2;
@@ -41,14 +49,9 @@ public class WindowWithDiffusions extends Thread {
             diffusionModels[i].setD(D);
             diffusionModels[i].start();
         }
-
-        //JLabel label = new JLabel("Press 'space' to start/pause   and   'R' to restart");
-        JButton label = new JButton("BUTTOOOON");
-        label.setBounds(50, screenSize.height - 110, 100, 10);
-        //label.setBackground(Color.green);
-        window.addComponent(label);
         window.startGui();
         window.wannaPaused();
+        //speedWindow = new SpeedJFrame((int) screenSize.getWidth() - 200, (int) screenSize.getHeight() - 60,200, 60);
     }
 
     public void setBorderAlpha(double alpha) {
@@ -68,31 +71,25 @@ public class WindowWithDiffusions extends Thread {
                 (int)(nFirst * colorLeft.getBlue() + nSecond * colorRight.getBlue()));
     }
 
-    private void updateModels(int iteration) {
+    private void updateModels(int iteration, boolean delayedPause) {
         for (int i = 0; i < 2; ++i) {
             for (int x = 0; x < Width; ++x) {
                 window.drawLine(i, x, diffusionModels[i].getColor(x));
             }
-            if (iteration % 2 == 0) {
+            if (iteration % 2 == 0 || delayedPause) {
                 window.clearGraph(i);
                 window.setStartPlotPoint(i, 0, diffusionModels[i].getNFirst(0), colorLeft);
-                for (int x = 0; x < Width; x += 5) {
+                for (int x = 0; x < Width; x += 2) {
                     window.drawPlotPoint(i, x, diffusionModels[i].getNFirst(x));
                 }
                 window.drawPlotPoint(i, Width - 1, diffusionModels[i].getNFirst(Width - 1));
                 window.setStartPlotPoint(i, Width - 1, diffusionModels[i].getNSecond(Width - 1), colorRight);
-                for (int x = Width - 1; x >= 0; x -= 5) {
+                for (int x = Width - 1; x >= 0; x -= 2) {
                     window.drawPlotPoint(i, x, diffusionModels[i].getNSecond(x));
                 }
                 window.drawPlotPoint(i, 0, diffusionModels[i].getNSecond(0));
             }
-            if (i == 0) {
-                for (int j = 0; j < 5000; ++j) {
-                    diffusionModels[i].update();
-                }
-            } else {
-                diffusionModels[i].update();
-            }
+            diffusionModels[i].multipleUpdate(5000, window.getSpeed());
             try {
                 sleep(10);
             } catch (InterruptedException e) {
@@ -108,11 +105,11 @@ public class WindowWithDiffusions extends Thread {
             diffusionModels[i].setColorFirst(colorLeft);
             diffusionModels[i].setColorSecond(colorRight);
         }
-        for (iteration = 0; iteration < 2; ++iteration)
-            updateModels(0);
+        updateModels(-1, true);
         boolean delayedPause = false;
         window.dontWannaPaused();
         window.wannaOneMore();
+        int x = 0;
         while (true) {
             if (!delayedPause && window.isWannaOneMore()) {
                 window.dontWannaOneMore();
@@ -145,7 +142,7 @@ public class WindowWithDiffusions extends Thread {
                 }
                 continue;
             }
-            updateModels(iteration);
+            updateModels(iteration, delayedPause);
             if (delayedPause) {
                 window.wannaPaused();
                 window.dontWannaOneMore();

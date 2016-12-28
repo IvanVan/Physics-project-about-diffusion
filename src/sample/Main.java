@@ -1,6 +1,10 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ArrayChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,6 +24,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws IOException {
+        FXCollections.observableArrayList();
         FileWorker.read();
         launch(args);
     }

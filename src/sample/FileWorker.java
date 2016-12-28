@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -46,6 +48,7 @@ public class FileWorker {
                 radius = line;
                 Substance substance = new Substance(name, mass, radius);
                 InformationAboutSubstance.addNew(substance);
+                InformationAboutSubstance.q.add(name);
                 kol = -1;
             }
             kol++;

@@ -11,6 +11,8 @@ public class Diffusion {
     protected double X0 = 100;
     protected double XFirst = X0, XSecond = X0;
     protected Color colorFirst = Color.RED, colorSecond = Color.BLUE;
+    protected double speedConst = 1.0;
+    protected double defaultRelativeSpeed = 5.0 / 100.0;
 
     Diffusion() throws InterruptedException {
 
@@ -53,6 +55,10 @@ public class Diffusion {
 
     public void update() {
 
+    }
+
+    public void multipleUpdate(int iterations, double relativeSpeed) {
+        speedConst = relativeSpeed / defaultRelativeSpeed;
     }
 
     public double getX0() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
@@ -14,62 +15,9 @@
 
 <GridPane alignment="CENTER" hgap="10.0" prefHeight="524.0001220703125" prefWidth="524.9998779296875" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
   <children>
-    <AnchorPane fx:id="waterDiffusion" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <AnchorPane id="AddNewSub" fx:id="addNewSub" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
-        <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="290.0" layoutY="202.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
-        <Label alignment="CENTER" layoutX="73.0" layoutY="14.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про первую частицу" wrapText="false">
-          <font>
-            <Font name="Algerian" size="18.0" fx:id="x2" />
-          </font>
-        </Label>
-        <ColorPicker fx:id="colorOfFirst" layoutX="391.0" layoutY="75.0" prefWidth="102.0" />
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="75.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false">
-          <font>
-            <Font name="Algerian" size="12.0" fx:id="x1" />
-          </font>
-        </Label>
-        <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="135.0" prefHeight="25.0" prefWidth="248.49993896484375" text="Какую часть сосуда занимает (в процентах)" textFill="BLACK" />
-        <TextField id="First" fx:id="firstSubstance" alignment="CENTER" layoutX="391.0" layoutY="135.0" prefHeight="25.0" prefWidth="83.0" text="" />
-        <Label alignment="CENTER" font="$x2" layoutX="73.0" layoutY="234.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про вторую частицу" wrapText="false" />
-        <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="88.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false" />
-        <ColorPicker id="colorOfFirst" fx:id="colorOfSecond" layoutX="391.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" />
-        <Button fx:id="showWaterDiffusion" font="$x1" layoutX="314.0" layoutY="480.0" mnemonicParsing="false" onAction="#setShowWaterDiffusion" prefWidth="179.0" text="Показать процесс" textFill="BLACK" wrapText="false">
-          <effect>
-            <Lighting>
-              <bumpInput>
-                <Shadow />
-              </bumpInput>
-              <light>
-                <javafx.scene.effect.Light.Distant>
-                  <color>
-                    <Color blue="0.639" green="1.000" red="0.000" fx:id="x3" />
-                  </color>
-                </javafx.scene.effect.Light.Distant>
-              </light>
-            </Lighting>
-          </effect>
-        </Button>
-        <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="291.0" layoutY="362.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
-        <Label fx:id="warning" alignment="TOP_CENTER" layoutX="59.0" layoutY="435.0" prefWidth="393.0" text="" />
-        <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="28.0" layoutY="400.0" prefHeight="25.0" prefWidth="234.49993896484375" text="Введите коэффициент диффузии" textFill="BLACK" wrapText="false" />
-        <TextField id="First" fx:id="dDiffusion" alignment="CENTER" layoutX="391.0" layoutY="400.0" prefHeight="25.0" prefWidth="83.0" text="" />
-        <Button fx:id="backToMainWindow1" layoutX="64.0" layoutY="481.0" mnemonicParsing="false" onAction="#setBackToMainWindow" prefWidth="152.0" text="Вернуться в главное окно" textOverrun="CLIP">
-          <effect>
-            <Lighting>
-              <bumpInput>
-                <Shadow />
-              </bumpInput>
-              <light>
-                <javafx.scene.effect.Light.Distant color="$x3" />
-              </light>
-            </Lighting>
-          </effect>
-        </Button>
-      </children>
-    </AnchorPane>
-    <AnchorPane fx:id="gasDiffusion" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <children>
-        <Button fx:id="backToMainWindow2" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#setBackToMainWindow2" prefWidth="168.0" text="Вернуться в главное окно">
+        <Button id="backToMainWindow2" layoutX="21.0" layoutY="481.0" mnemonicParsing="false" onAction="#setBackToMainWindow2" prefWidth="168.0" text="Вернуться в главное окно">
           <effect>
             <Lighting>
               <bumpInput>
@@ -81,62 +29,6 @@
                     <Color blue="0.714" green="1.000" red="0.200" fx:id="x4" />
                   </color>
                 </javafx.scene.effect.Light.Distant>
-              </light>
-            </Lighting>
-          </effect>
-        </Button>
-        <Button layoutX="187.0" layoutY="489.0" mnemonicParsing="false" onAction="#setShowGasDiffusion" prefWidth="137.0" text="Показать процесс">
-          <effect>
-            <Lighting>
-              <bumpInput>
-                <Shadow />
-              </bumpInput>
-              <light>
-                <javafx.scene.effect.Light.Distant color="$x4" />
-              </light>
-            </Lighting>
-          </effect>
-        </Button>
-        <Label alignment="CENTER" layoutX="32.0" layoutY="63.0" prefHeight="62.0" prefWidth="462.0" text="Введите названия вещест, температуру и давление">
-          <font>
-            <Font name="Agency FB Полужирный" size="18.0" />
-          </font>
-        </Label>
-        <Label layoutX="32.0" layoutY="143.0" prefHeight="22.0" prefWidth="137.0" text="Вещество №1" />
-        <Label layoutX="30.0" layoutY="178.0" prefHeight="21.0" prefWidth="137.0" text="Вещество №2" />
-        <TextField fx:id="sub1" layoutX="357.0" layoutY="143.0" prefWidth="154.0" />
-        <TextField fx:id="sub2" layoutX="357.0" layoutY="182.0" prefWidth="154.0" />
-        <TextField fx:id="temp" layoutX="357.0" layoutY="251.0" prefWidth="154.0" text="" />
-        <TextField fx:id="pres" layoutX="357.0" layoutY="315.0" prefWidth="154.0" text="" />
-        <Label layoutX="32.0" layoutY="257.0" prefHeight="21.0" prefWidth="137.0" text="Температура" />
-        <Label layoutX="30.0" layoutY="305.0" prefHeight="21.0" prefWidth="137.0" text="Давление" />
-        <Label fx:id="warningGas" alignment="CENTER" layoutX="14.0" layoutY="397.0" prefHeight="42.0" prefWidth="483.0" text="" textFill="RED" />
-        <Label layoutX="30.0" layoutY="354.0" prefHeight="21.0" prefWidth="275.0" text="Какую часть сосуда занимает первое вещество" />
-        <TextField id="pres" fx:id="gasSub" layoutX="357.0" layoutY="354.0" prefWidth="154.0" text="" />
-        <Button layoutX="329.0" layoutY="489.0" mnemonicParsing="false" onAction="#setShowWindowAddNew" prefWidth="168.0" text="Добавить новое вещество">
-          <effect>
-            <Lighting>
-              <bumpInput>
-                <Shadow />
-              </bumpInput>
-              <light>
-                <javafx.scene.effect.Light.Distant color="$x4" />
-              </light>
-            </Lighting>
-          </effect>
-        </Button>
-      </children>
-    </AnchorPane>
-    <AnchorPane id="AddNewSub" fx:id="addNewSub" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <children>
-        <Button id="backToMainWindow2" layoutX="21.0" layoutY="481.0" mnemonicParsing="false" onAction="#setBackToMainWindow2" prefWidth="168.0" text="Вернуться в главное окно">
-          <effect>
-            <Lighting>
-              <bumpInput>
-                <Shadow />
-              </bumpInput>
-              <light>
-                <javafx.scene.effect.Light.Distant color="$x4" />
               </light>
             </Lighting>
           </effect>
@@ -160,6 +52,153 @@
         <TextField fx:id="newRad" layoutX="348.0" layoutY="360.0" prefWidth="142.0" />
         <Label layoutX="14.0" layoutY="78.0" prefHeight="35.0" prefWidth="261.0" text="Введите название вещества" />
         <TextField id="newMas" fx:id="newName" layoutX="348.0" layoutY="85.0" prefWidth="142.0" />
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="waterDiffusion" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="290.0" layoutY="202.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
+        <Label alignment="CENTER" layoutX="73.0" layoutY="14.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про первую частицу" wrapText="false">
+          <font>
+            <Font name="Algerian" size="18.0" fx:id="x2" />
+          </font>
+        </Label>
+        <ColorPicker fx:id="colorOfFirst" layoutX="375.0" layoutY="75.0" prefWidth="102.0" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="75.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false">
+          <font>
+            <Font name="Algerian" size="12.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label alignment="CENTER" font="$x1" layoutX="21.0" layoutY="150.0" prefHeight="25.0" prefWidth="248.49993896484375" text="Какую часть сосуда занимает (в процентах)" textFill="BLACK" />
+        <TextField id="First" fx:id="firstSubstance" alignment="CENTER" layoutX="372.0" layoutY="138.0" prefHeight="25.0" prefWidth="102.0" text="" />
+        <Label alignment="CENTER" font="$x2" layoutX="73.0" layoutY="234.0" prefHeight="56.0" prefWidth="378.13134765625" text="Введите информацию про вторую частицу" wrapText="false" />
+        <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="88.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" text="Выберите цвет" textFill="BLACK" wrapText="false" />
+        <ColorPicker id="colorOfFirst" fx:id="colorOfSecond" layoutX="391.0" layoutY="306.0" prefHeight="25.0" prefWidth="102.0" />
+        <Button fx:id="showWaterDiffusion" font="$x1" layoutX="314.0" layoutY="480.0" mnemonicParsing="false" onAction="#setShowWaterDiffusion" prefWidth="179.0" text="Показать процесс" textFill="BLACK" wrapText="false">
+          <effect>
+            <Lighting>
+              <bumpInput>
+                <Shadow />
+              </bumpInput>
+              <light>
+                <javafx.scene.effect.Light.Distant>
+                  <color>
+                    <Color blue="0.639" green="1.000" red="0.000" fx:id="x3" />
+                  </color>
+                </javafx.scene.effect.Light.Distant>
+              </light>
+            </Lighting>
+          </effect>
+        </Button>
+        <Line endX="233.0" endY="-2.0" fill="BLACK" layoutX="291.0" layoutY="362.0" startX="-287.0" startY="-1.0" strokeWidth="1.6" />
+        <Label fx:id="warning" alignment="TOP_CENTER" layoutX="59.0" layoutY="435.0" prefWidth="393.0" text="" />
+        <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" layoutX="28.0" layoutY="400.0" prefHeight="25.0" prefWidth="234.49993896484375" text="Введите коэффициент диффузии" textFill="BLACK" wrapText="false" />
+        <TextField id="First" fx:id="dDiffusion" alignment="CENTER" layoutX="391.0" layoutY="400.0" prefHeight="25.0" prefWidth="83.0" text="" />
+        <Button fx:id="backToMainWindow1" layoutX="37.0" layoutY="481.0" mnemonicParsing="false" onAction="#setBackToMainWindow" prefWidth="179.0" text="Вернуться в главное окно" textOverrun="CLIP">
+          <effect>
+            <Lighting>
+              <bumpInput>
+                <Shadow />
+              </bumpInput>
+              <light>
+                <javafx.scene.effect.Light.Distant color="$x3" />
+              </light>
+            </Lighting>
+          </effect>
+        </Button>
+        <Slider fx:id="howPerc" layoutX="375.0" layoutY="175.0" onContextMenuRequested="#getPer" onDragDetected="#getPer" onDragDone="#getPer" onDragDropped="#getPer" onDragEntered="#getPer" onDragExited="#getPer" onDragOver="#getPer" onInputMethodTextChanged="#getPer" onKeyPressed="#getPer" onKeyReleased="#getPer" onKeyTyped="#getPer" onMouseClicked="#getPer" onMouseDragEntered="#getPer" onMouseDragExited="#getPer" onMouseDragOver="#getPer" onMouseDragReleased="#getPer" onMouseDragged="#getPer" onMouseEntered="#getPer" onMouseExited="#getPer" onMouseMoved="#getPer" onMousePressed="#getPer" onMouseReleased="#getPer" onRotate="#getPer" onRotationFinished="#getPer" onRotationStarted="#getPer" onScroll="#getPer" onScrollFinished="#getPer" onScrollStarted="#getPer" onSwipeDown="#getPer" onSwipeLeft="#getPer" onSwipeRight="#getPer" onSwipeUp="#getPer" onTouchMoved="#getPer" onTouchPressed="#getPer" onTouchReleased="#getPer" onTouchStationary="#getPer" onZoom="#getPer" onZoomFinished="#getPer" onZoomStarted="#getPer" prefWidth="102.0" />
+        <ChoiceBox fx:id="howProcess" layoutX="234.0" layoutY="435.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="gasDiffusion" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <children>
+        <Button fx:id="backToMainWindow2" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#setBackToMainWindow2" prefWidth="168.0" text="Вернуться в главное окно">
+          <effect>
+            <Lighting>
+              <bumpInput>
+                <Shadow />
+              </bumpInput>
+              <light>
+                <javafx.scene.effect.Light.Distant color="$x4" />
+              </light>
+            </Lighting>
+          </effect>
+        </Button>
+        <Button layoutX="187.0" layoutY="489.0" mnemonicParsing="false" onAction="#setShowGasDiffusion" prefWidth="137.0" text="Показать процесс">
+          <effect>
+            <Lighting>
+              <bumpInput>
+                <Shadow />
+              </bumpInput>
+              <light>
+                <javafx.scene.effect.Light.Distant color="$x4" />
+              </light>
+            </Lighting>
+          </effect>
+        </Button>
+        <Label alignment="CENTER" layoutX="30.0" layoutY="14.0" prefHeight="62.0" prefWidth="462.0" text="Введите названия вещест, температуру и давление">
+          <font>
+            <Font name="Agency FB Полужирный" size="18.0" />
+          </font>
+        </Label>
+        <Label layoutX="32.0" layoutY="76.0" prefHeight="22.0" prefWidth="137.0" text="Вещество №1" />
+        <Label layoutX="32.0" layoutY="150.0" prefHeight="21.0" prefWidth="137.0" text="Вещество №2" />
+        <TextField fx:id="temp" layoutX="357.0" layoutY="251.0" prefWidth="154.0" text="" />
+        <TextField fx:id="pres" layoutX="357.0" layoutY="294.0" prefWidth="154.0" text="" />
+        <Label layoutX="32.0" layoutY="257.0" prefHeight="21.0" prefWidth="137.0" text="Температура" />
+        <Label layoutX="32.0" layoutY="294.0" prefHeight="21.0" prefWidth="137.0" text="Давление" />
+        <Label fx:id="warningGas" alignment="CENTER" layoutX="15.0" layoutY="397.0" prefHeight="42.0" prefWidth="483.0" text="" textFill="RED" />
+        <Label layoutX="30.0" layoutY="333.0" prefHeight="21.0" prefWidth="275.0" text="Какую часть сосуда занимает первое вещество" />
+        <TextField id="pres" fx:id="gasSub" layoutX="357.0" layoutY="327.0" prefWidth="154.0" text="" />
+        <Button layoutX="329.0" layoutY="489.0" mnemonicParsing="false" onAction="#setShowWindowAddNew" prefWidth="168.0" text="Добавить новое вещество">
+          <effect>
+            <Lighting>
+              <bumpInput>
+                <Shadow />
+              </bumpInput>
+              <light>
+                <javafx.scene.effect.Light.Distant color="$x4" />
+              </light>
+            </Lighting>
+          </effect>
+        </Button>
+        <ChoiceBox fx:id="subs1" layoutX="364.0" layoutY="77.0" prefWidth="140.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+        <ChoiceBox fx:id="subs2" layoutX="364.0" layoutY="150.0" prefWidth="140.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+        <Slider fx:id="howPercent" layoutX="357.0" layoutY="370.0" onContextMenuRequested="#getPer" onDragDetected="#getPer" onDragDone="#getPer" onDragDropped="#getPer" onDragEntered="#getPer" onDragExited="#getPer" onDragOver="#getPer" onInputMethodTextChanged="#getPer" onKeyPressed="#getPer" onKeyReleased="#getPer" onKeyTyped="#getPer" onMouseClicked="#getPer" onMouseDragEntered="#getPer" onMouseDragExited="#getPer" onMouseDragOver="#getPer" onMouseDragReleased="#getPer" onMouseDragged="#getPer" onMouseEntered="#getPer" onMouseExited="#getPer" onMouseMoved="#getPer" onMousePressed="#getPer" onMouseReleased="#getPer" onRotate="#getPer" onRotationFinished="#getPer" onRotationStarted="#getPer" onScroll="#getPer" onScrollFinished="#getPer" onScrollStarted="#getPer" onSwipeDown="#getPer" onSwipeLeft="#getPer" onSwipeRight="#getPer" onSwipeUp="#getPer" onTouchMoved="#getPer" onTouchPressed="#getPer" onTouchReleased="#getPer" onTouchStationary="#getPer" onZoom="#getPer" onZoomFinished="#getPer" onZoomStarted="#getPer" prefWidth="154.0" />
+        <ChoiceBox fx:id="box" layoutX="182.0" layoutY="418.0" prefHeight="21.9998779296875" prefWidth="140.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ChoiceBox>
+        <ColorPicker fx:id="colorFirstGas" layoutX="393.0" layoutY="106.0" />
+        <ColorPicker fx:id="colorSecondGas" layoutX="393.0" layoutY="183.0" />
       </children>
     </AnchorPane>
     <AnchorPane id="ChoosenWindow" fx:id="choosenWindow" prefHeight="200.0" prefWidth="200.0" visible="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
